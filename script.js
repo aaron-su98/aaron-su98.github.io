@@ -8,7 +8,7 @@ const storage = window.localStorage;
 
 function load(data){
   if(storage.getItem("saveData")){
-    data = JSON.parse(storage.getItem("saveData"));
+    window.data = JSON.parse(storage.getItem("saveData"));
     console.log(data)
   }
 }
