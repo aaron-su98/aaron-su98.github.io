@@ -4,6 +4,17 @@
  *   SLICE 1
  **************/
 
+const storage = window.localStorage;
+
+function load(data){
+  if(storage.getItem("saveData")){
+    data = JSON.parse(storage.getItem("saveData"));
+    console.log(data)
+  }
+}
+
+load(data);
+
 function updateCoffeeView(coffeeQty) {
   // your code here
   const coffeeCounter = document.getElementById("coffee_counter");
@@ -170,7 +181,9 @@ function tick(data) {
   updateCoffeeView(data.coffee);
   updateCPSView(data.totalCPS);
   renderProducers(data);
+  window.localStorage.setItem("saveData", JSON.stringify(data));
 }
+
 
 /*************************
  *  Start your engines!
