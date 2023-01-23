@@ -6,16 +6,16 @@
 
 function updateCoffeeView(coffeeQty) {
   // your code here
-  const coffeeCounter = document.getElementById('coffee_counter');
-  coffeeCounter.innerText = coffeeQty
+  const coffeeCounter = document.getElementById("coffee_counter");
+  coffeeCounter.innerText = coffeeQty;
 }
 
 function clickCoffee(data) {
   // your code here
-  data.coffee++
-  const coffeeCounter = document.getElementById('coffee_counter');
-  coffeeCounter.innerText = data.coffee
-  renderProducers(data)
+  data.coffee++;
+  const coffeeCounter = document.getElementById("coffee_counter");
+  coffeeCounter.innerText = data.coffee;
+  renderProducers(data);
 }
 
 /**************
@@ -24,36 +24,37 @@ function clickCoffee(data) {
 
 function unlockProducers(producers, coffeeCount) {
   // your code here
-  for(let i = 0; i < producers.length; i++){
-    if(coffeeCount >= (producers[i].price) / 2){
-        producers[i].unlocked = true
-      }
+  for (let i = 0; i < producers.length; i++) {
+    if (coffeeCount >= producers[i].price / 2) {
+      producers[i].unlocked = true;
+    }
   }
-  return producers
+  return producers;
 }
 function getUnlockedProducers(data) {
   // your code here
-  let arr = []
-  data.producers.forEach(element => {
-    if(element.unlocked == true){
-      arr.push(element)
+  let arr = [];
+  data.producers.forEach((element) => {
+    if (element.unlocked == true) {
+      arr.push(element);
     }
-  })
-  return arr
+  });
+  return arr;
 }
 
 function makeDisplayNameFromId(id) {
   // your code here
-  // return id.toLowerCase().split('_').map((word)=> {
-  //   return (word.charAt(0).toUpperCase() + word.slice(1))
-  // }).join(' ');
-  return id.split('_').filter(word => word.length > 0).map((word) => (word.charAt(0).toUpperCase() + word.slice(1))).join(" ");
+  return id
+    .split("_")
+    .filter((word) => word.length > 0)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 }
 
 // You shouldn't need to edit this function-- its tests should pass once you've written makeDisplayNameFromId
 function makeProducerDiv(producer) {
-  const containerDiv = document.createElement('div');
-  containerDiv.className = 'producer';
+  const containerDiv = document.createElement("div");
+  containerDiv.className = "producer";
   const displayName = makeDisplayNameFromId(producer.id);
   const currentCost = producer.price;
   const html = `
@@ -82,15 +83,15 @@ function deleteAllChildNodes(parent) {
 
 function renderProducers(data) {
   // your code here
-  const producerContainer = document.getElementById('producer_container');
+  const producerContainer = document.getElementById("producer_container");
   const unlockDivs = unlockProducers(data.producers, data.coffee);
   deleteAllChildNodes(producerContainer);
-  unlockDivs.forEach(producer => {
+  unlockDivs.forEach((producer) => {
     const producerDivs = makeProducerDiv(producer);
-    if(producer.unlocked === true){
+    if (producer.unlocked === true) {
       producerContainer.appendChild(producerDivs);
     }
-  })
+  });
 }
 /**************
  *   SLICE 3
@@ -99,33 +100,33 @@ function renderProducers(data) {
 function getProducerById(data, producerId) {
   // your code here
   let id;
-  data.producers.map(producer => {
-    if(producerId === producer.id){
-      id = producer
+  data.producers.map((producer) => {
+    if (producerId === producer.id) {
+      id = producer;
     }
-  })
-  return id
+  });
+  return id;
 }
 
 function canAffordProducer(data, producerId) {
   // your code here
-  const getId = getProducerById(data, producerId)
-  if(data.coffee >= getId.price){
-    return true
+  const getId = getProducerById(data, producerId);
+  if (data.coffee >= getId.price) {
+    return true;
   }
-  return false
+  return false;
 }
 
 function updateCPSView(cps) {
   // your code here
-  const cpsView = document.getElementById('cps')
-  cpsView.innerText = cps
+  const cpsView = document.getElementById("cps");
+  cpsView.innerText = cps;
 }
 
 function updatePrice(oldPrice) {
   // your code here
-  if(Number.isInteger(oldPrice)){
-    return Math.floor(oldPrice * 1.25)
+  if (Number.isInteger(oldPrice)) {
+    return Math.floor(oldPrice * 1.25);
   }
 }
 
@@ -134,7 +135,7 @@ function attemptToBuyProducer(data, producerId) {
   const affordable = canAffordProducer(data, producerId);
   const producer = getProducerById(data, producerId);
   const priceChange = updatePrice(producer.price);
-  if(affordable === true){
+  if (affordable === true) {
     producer.qty++;
     data.coffee -= producer.price;
     producer.price = priceChange;
@@ -146,15 +147,15 @@ function attemptToBuyProducer(data, producerId) {
 
 function buyButtonClick(event, data) {
   // your code here
-  if(event.target.tagName !== 'BUTTON'){
-    return
+  if (event.target.tagName !== "BUTTON") {
+    return;
   } else {
     const currentButton = event.target.id;
     const currentId = currentButton.slice(4);
     const buy = attemptToBuyProducer(data, currentId);
-    if(buy === false){
+    if (buy === false) {
       window.alert("Not enough coffee!");
-    } else if(buy === true){
+    } else if (buy === true) {
       buy;
       renderProducers(data);
       updateCoffeeView(data.coffee);
@@ -185,19 +186,19 @@ function tick(data) {
 
 // How does this check work? Node gives us access to a global variable /// called `process`, but this variable is undefined in the browser. So,
 // we can see if we're in node by checking to see if `process` exists.
-if (typeof process === 'undefined') {
+if (typeof process === "undefined") {
   // Get starting data from the window object
   // (This comes from data.js)
   const data = window.data;
 
   // Add an event listener to the giant coffee emoji
-  const bigCoffee = document.getElementById('big_coffee');
-  bigCoffee.addEventListener('click', () => clickCoffee(data));
+  const bigCoffee = document.getElementById("big_coffee");
+  bigCoffee.addEventListener("click", () => clickCoffee(data));
 
   // Add an event listener to the container that holds all of the producers
   // Pass in the browser event and our data object to the event listener
-  const producerContainer = document.getElementById('producer_container');
-  producerContainer.addEventListener('click', event => {
+  const producerContainer = document.getElementById("producer_container");
+  producerContainer.addEventListener("click", (event) => {
     buyButtonClick(event, data);
   });
 
@@ -224,6 +225,6 @@ else if (process) {
     updatePrice,
     attemptToBuyProducer,
     buyButtonClick,
-    tick
+    tick,
   };
 }
