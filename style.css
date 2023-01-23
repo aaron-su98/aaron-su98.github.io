@@ -3,6 +3,7 @@
 }
 body {
   margin: 0px;
+  background-color: #AD8E70;
 }
 .column-container {
   display: flex;
@@ -30,13 +31,13 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #E5E5CB;
 }
 
 .column-header {
   font-size: 25px;
   position: relative;
-  background-color: white;
-  top: 8px;
+  background-color: #AD8E70;
 }
 #big_coffee {
   user-select: none;
@@ -58,6 +59,7 @@ body {
   overflow: auto;
   border: 2px black solid;
   border-radius: 5px;
+  background-color: #3C2A21;
 }
 
 .producer {
@@ -67,6 +69,7 @@ body {
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
+  background-color: #D5CEA3;
 }
 .producer-column {
   display: flex;
