@@ -85,6 +85,34 @@ window.data = {
       unlocked: false,
       cps: 2000,
       qty: 0
+    },
+    {
+      id: 'coffee_star',
+      price: 10000000,
+      unlocked: false,
+      cps: 5000,
+      qty: 0
+    },
+    {
+      id: 'coffee_galaxy',
+      price: 50000000,
+      unlocked: false,
+      cps: 10000,
+      qty: 0
+    },
+    {
+      id: 'coffee_universe',
+      price: 100000000,
+      unlocked: false,
+      cps: 20000,
+      qty: 0
+    },
+    {
+      id: 'coffee_multiverse',
+      price: 500000000,
+      unlocked: false,
+      cps: 50000,
+      qty: 0
     }
   ]
 };

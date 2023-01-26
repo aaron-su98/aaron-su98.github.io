@@ -137,7 +137,7 @@ function updateCPSView(cps) {
 function updatePrice(oldPrice) {
   // your code here
   if (Number.isInteger(oldPrice)) {
-    return Math.floor(oldPrice * 1.25);
+    return Math.floor(oldPrice * 1.1);
   }
 }
 
